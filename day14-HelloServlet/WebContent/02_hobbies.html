@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>02 Hobby : 취미 목록</title>
+<style type="text/css">
+	table, tr, td {
+		border : solid 1px black;
+	}
+</style>
+</head>
+<body>
+
+	<h1>회원 정보 입력</h1>
+	<form action="hobby" method="post">
+<!-- 	table>(tr>td*2)*3 -->
+		<table>
+			<tr>
+				<td>이름</td>
+				<td>
+					<input name="username" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td>취미 선택</td>
+				<td>
+<!-- 					(input[name=hobby type=checkbox id="hobby$" value=""]+label[for="hobby$"])*5 -->
+					<input type="checkbox" name="hobby" id="hobby1" value="baseball" />
+					<label for="hobby1">야구</label><br>
+					<input type="checkbox" name="hobby" id="hobby2" value="ski" />
+					<label for="hobby2">스키</label><br>
+					<input type="checkbox" name="hobby" id="hobby3" value="surfing" />
+					<label for="hobby3">서핑</label><br>
+					<input type="checkbox" name="hobby" id="hobby4" value="soccer" />
+					<label for="hobby4">축구</label><br>
+					<input type="checkbox" name="hobby" id="hobby5" value="basketball" />
+					<label for="hobby5">농구</label><br>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center">
+					<input type="submit" value="저장하기" />
+					<input type="reset" value="초기화" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

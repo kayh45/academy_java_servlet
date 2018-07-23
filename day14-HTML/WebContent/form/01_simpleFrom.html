@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>01 Simple Form</title>
+</head>
+<body>
+
+	Hello, HTML
+	<!-- <form> 엘리먼트(태그) : -----------------------------
+		 HTML 에서 사용자의 입력을 받아서 action 속성에 지정된
+		 대상으로 데이터를 전송하는 역할을 수행하는 태그이다.
+		 
+		 눈에 보이지 않는 표와 같은 역할
+	----------------------------------------------------------	
+	-->
+	<form action="01_simpleFormTarget.html" method="get">
+		이름 :     <input type="text"     name="username"> <br>
+		비밀번호 : <input type="password" name="password"> <br>
+		<input type="submit" value="로그인">
+		<input type="reset"  value="초기화">
+	</form>
+	
+	<!-- <input> 엘리먼트 : --------------------------------------
+		 <form> 안에 사용되어, 사용자의 입력 값을 받아들일 수 있는
+		 구성 요소를 화면에 출력하는 용도의 태그이다.
+	 	 
+	 	 여러 형태가 존재
+	 	 text     : 기본적인 문자입력
+	 	 password : 화면에 글자가 노출되지 않아야 하는 형태의 입력
+	 	 submit   : <form>의 action 속성으로 <input> 의 값을 전송
+	 	 reset    : <form>안의 <input>에 입력된 값을 초기화
+	 	 
+	 	 type 이 submit으로 설정된 <input>이 브라우저에 클릭되면
+	 	 해당 submit이 소속되어있는 <form>의 action으로 
+	 	 페이지가 이동되면서 <input> 들 안에 입력된 값이 같이 전달
+	 	 ----------------------------------------------------------
+	 -->
+
+</body>
+</html>
