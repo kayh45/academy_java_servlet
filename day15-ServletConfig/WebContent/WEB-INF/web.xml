@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>day15-ServletConfig</display-name>
+  
+  <!-- productServlet 설정 등록 -->
+  <servlet>
+  	<servlet-name>ProdServlet</servlet-name>
+  	<servlet-class>product.ProductServlet</servlet-class>
+  	<init-param>
+  		<param-name>company</param-name>
+  		<param-value>아디다스</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>ceoName</param-name>
+  		<param-value>홍길동</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ProdServlet</servlet-name>
+  	<url-pattern>/prod</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
