@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>day15-HelloJsp</display-name>
+  
+  <!-- web.xml : 자바 웹 서비스 구성을 위한 표준 문서
+                 /WEB-INF/ 아래 존재하도록 작성
+                 
+                 하나의 웹서비스에서 여러 서블릿이 작동할 때
+                 각각의 서블릿마다 설정을 할 수 있다.
+                 
+  -->
+  
+  <!-- 
+	 <servlet> 엘리먼트를 사용하여 1개의 서블릿(서블릿 클래스 1개 혹은 JSP 파일 1개)을 설정할 수있다.
+	 <servlet> 엘리먼트는 반드시 <servlet-mapping> 과 짝을 이루어서 작성
+	 <servlet> 엘리먼트에는 하위 엘리먼트로 
+	           <servlet-name>, <jsp-file> : JSP 를 설정할 때
+	           <servlet-name>, <servlet-class> : 서블릿 클래스를 설정할 때
+	           두 엘리먼트를 반드시 작성해야 함
+	           
+  -->
+  <servlet>
+  	<servlet-name>secureJsp</servlet-name>
+  	<jsp-file>/WEB-INF/jsp/secure.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>secureJsp</servlet-name>
+  	<url-pattern>/secure</url-pattern>
+  </servlet-mapping>  
+  <!-- 
+  	<servlet-mapping> 엘리먼트는 <servlet> 에서 정의된 해당 서블릿을
+  	찾아갈 수 있는 논리적 이름 작성하는 엘리먼트
+  	
+  	하위 엘리먼트로 반드시 <servlet-name>, <url-pattern> 을 작성
+  	
+  	<servlet-name> : <servlet> 하위에 작성된 <servlet-name>
+  				     의 값과 대소문자가 정확히 일치하는 이름이어야 함
+  	
+  	<url-pattern>  : <servlet> 하위에 작성 된 <jsp-file>, <servlet-class>를 
+  				     찾아가기 위한 논리적 이름. 브라우저 경로에 사용될 이름
+   -->
+   
+   <!-- product List JSP 설정 -->
+   <servlet>
+   	<servlet-name>productListJsp</servlet-name>
+   	<jsp-file>/WEB-INF/jsp/product/list.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>productListJsp</servlet-name>
+   	<url-pattern>/product/list</url-pattern>
+   </servlet-mapping>
+   
+   <!-- main.jsp 설정 -->
+   <servlet>
+   	<servlet-name>mainJsp</servlet-name>
+   	<jsp-file>/WEB-INF/jsp/actionTag/main.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>mainJsp</servlet-name>
+   	<url-pattern>/main</url-pattern>
+   </servlet-mapping>
+   
+   <!-- copy.jsp 설정 -->
+   <servlet>
+   	<servlet-name>copyJsp</servlet-name>
+   	<jsp-file>/WEB-INF/jsp/actionTag/copy.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>copyJsp</servlet-name>
+   	<url-pattern>/copy</url-pattern>
+   </servlet-mapping>
+   
+   <!-- reqTest.jsp 설정 -->
+   <servlet>
+   	<servlet-name>reqJsp</servlet-name>
+   	<jsp-file>/WEB-INF/jsp/request/reqTest.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>reqJsp</servlet-name>
+   	<url-pattern>/req</url-pattern>
+   </servlet-mapping>
+   
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
