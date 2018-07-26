@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="shop.vo.Product" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,26 +20,27 @@ table, tr, th, td {
 <table>
 	<tr>
 		<th>제품 코드</th>
-		<td>
-			<input name="prodCode" type="text" required="required" value = "${product.prodCode}" readonly/>
-		</td>
+		<td>${product.prodCode}</td>
 	</tr>
 	<tr>
 		<th>제품 이름</th>
-		<td>
-			<input name="prodName" type="text"  value = "${product.prodName}" readonly/>
-		</td>
+		<td>${product.prodName}</td>
 	</tr>
 	<tr>
 		<th>가격</th>
 		<td>
-			<input name="price" type="number"  value = "${product.price}" readonly/>
+			<fmt:formatNumber value="${product.price}" type="currency" currencyCode="KRW"/>
 		</td>
 	</tr>
 	<tr>
 		<th>재고</th>
-		<td>
-			<input name="quantity" type="number" value = "${product.quantity}" readonly/>
+		<td>${product.quantity}</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center;">
+			<a href="list">목록보기</a>
+			<a href="update?prodCode=${product.prodCode}">수정</a>
+			<a href="delete?prodCode=${product.prodCode}">삭제</a>
 		</td>
 	</tr>
 </table>

@@ -60,6 +60,7 @@
 		     , p.price 
 		     , p.quantity
 		  FROM product p
+		 ORDER BY p.prodcode
 	</select>
 	
 	<select id="isExists" parameterType="Product" resultType="string">

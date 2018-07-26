@@ -31,7 +31,7 @@ currency 형식 출력 : 3자리 끊어 읽기, 통화코드, 통화심볼이 �
 pattern 출력
 <fmt:formatNumber value="${pattern}" pattern=".00" />
 <fmt:formatNumber value="987654.321" pattern=".00" />
-<fmt:formatNumber value="987654.321" pattern="000,000.00" />
+<fmt:formatNumber value="987654.321" pattern="###,###,###.##" />
 </pre>
 
 <hr />
