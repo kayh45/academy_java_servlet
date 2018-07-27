@@ -38,9 +38,9 @@ table, tr, th, td {
 	</tr>
 	<tr>
 		<td colspan="2" style="text-align:center;">
-			<a href="list">목록보기</a>
-			<a href="update?prodCode=${product.prodCode}">수정</a>
-			<a href="delete?prodCode=${product.prodCode}">삭제</a>
+			<a href="${contextPath}/main/list">목록보기</a>
+			<a href="${contextPath}/main/update?prodCode=${product.prodCode}">수정</a>
+			<a href="${contextPath}/main/delete?prodCode=${product.prodCode}">삭제</a>
 		</td>
 	</tr>
 </table>

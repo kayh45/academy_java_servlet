@@ -33,14 +33,14 @@ table, tr, th, td {
 	<tr>
 		<td>${product.prodCode}</td>
 		<td>
-			<a href="detail?prodCode=${product.prodCode}">${product.prodName}</a>
+			<a href="${contextPath}/main/detail?prodCode=${product.prodCode}">${product.prodName}</a>
 		</td>
 		<td>
 			<fmt:formatNumber value="${product.price}" type="currency" currencyCode="KRW"/>
 		</td>
 		<td>${product.quantity}</td>
 		<td>
-			<a href="delete?prodCode=${product.prodCode}">삭제</a>
+			<a href="${contextPath}/main/delete?prodCode=${product.prodCode}">삭제</a>
 		</td>
 	</tr>
 	</c:forEach>
@@ -52,8 +52,8 @@ table, tr, th, td {
 </c:if>
 <tr>
 	<td style="text-align: right" colspan="5">
-		<a href="insert">신규 제품 추가</a>
-		<a href="menu">메뉴로...</a>
+		<a href="${contextPath}/main/insert">신규 제품 추가</a>
+		<a href="${contextPath}/main/menu">메뉴로...</a>
 	</td>
 </tr>
 </table>

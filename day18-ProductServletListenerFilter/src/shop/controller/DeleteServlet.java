@@ -22,7 +22,7 @@ import shop.vo.Product;
  * @author PC38219
  *
  */
-@WebServlet("/delete")
+@WebServlet({"/delete", "/main/delete"})
 public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,10 +35,6 @@ public class DeleteServlet extends HttpServlet {
 	 * 4. 성공 / 실패 뷰 처리
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 한글 처리
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
 		// 2. 모델 생성 : 삭제
 		// (1) 요청 파라미터 추출
 		String prodCode = request.getParameter("prodCode");
@@ -48,7 +44,7 @@ public class DeleteServlet extends HttpServlet {
 		
 		// (3) DB 객체 선언/얻기
 		GeneralWarehouse warehouse;
-		warehouse = getWarehouse("mybatis");
+		warehouse = (GeneralWarehouse) getServletContext().getAttribute("warehouse");
 		
 		// 3. view 관련 변수들 선언
 		// (1)
@@ -74,9 +70,9 @@ public class DeleteServlet extends HttpServlet {
 		
 		// 3. view 선택
 		// (2) 1차 뷰 선택
-		view = "messageJsp";
+		view = "/messageJsp";
 		// (3) 2차 뷰 선택
-		next = "list";
+		next = "main/list";
 		
 		request.setAttribute("next", next);
 		

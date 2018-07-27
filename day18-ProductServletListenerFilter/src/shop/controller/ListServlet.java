@@ -22,7 +22,7 @@ import shop.vo.Product;
  * @author PC38219
  *
  */
-@WebServlet("/list")
+@WebServlet({"/list", "/main/list"})
 public class ListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class ListServlet extends HttpServlet {
 		
 		// 2. 조회에 필요한 객체 선언
 		GeneralWarehouse warehouse;
-		warehouse = getWarehouse("mybatis");
+		warehouse = (GeneralWarehouse) getServletContext().getAttribute("warehouse");
 		
 		
 		// 3. 조회 결과를 request 에 속성으로 추가
@@ -42,7 +42,7 @@ public class ListServlet extends HttpServlet {
 		request.setAttribute("products", products);
 		
 		// 4. 조회 결과가 추가된 request 를 적절한 목록 뷰(list.jsp) 로 전달 (페이지 이동)
-		String view = "listJsp";
+		String view = "/listJsp";
 		
 		RequestDispatcher reqd;
 		reqd = request.getRequestDispatcher(view);

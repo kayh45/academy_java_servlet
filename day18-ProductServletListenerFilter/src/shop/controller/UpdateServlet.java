@@ -34,7 +34,7 @@ import shop.vo.Product;
  *    => 메시지를 처리할 뷰를 선택
  *    => 2차 뷰를 선택 
  */
-@WebServlet("/update")
+@WebServlet({"/update", "/main/update"})
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -61,7 +61,7 @@ public class UpdateServlet extends HttpServlet {
 		
 		// (3) DB조회에 사용할 객체 준비              
 		GeneralWarehouse warehouse;
-		warehouse = getWarehouse("mybatis");
+		warehouse = (GeneralWarehouse) getServletContext().getAttribute("warehouse");
 		
 		// 3. View 선택
 		// (1) view 저장 변수 선언
@@ -77,7 +77,7 @@ public class UpdateServlet extends HttpServlet {
 			request.setAttribute("product", found);
 			
 			// 3.(2) view 선택
-			view = "updateJsp";
+			view = "/updateJsp";
 					
 		} catch (NotFoundException e) {
 			// 2.(6) 수정 제품코드가 없는 경우 실패 메시지
@@ -85,7 +85,7 @@ public class UpdateServlet extends HttpServlet {
 			request.setAttribute("message", message);
 			
 			// 3.(2) view 선택
-			view = "messageJsp";
+			view = "/messageJsp";
 			
 			// 3.(3) 2차 뷰 선택
 			next = "list";
@@ -128,7 +128,7 @@ public class UpdateServlet extends HttpServlet {
 		
 		// (3) update 수행을 위하여 DB객체 얻기
 		GeneralWarehouse warehouse;
-		warehouse = getWarehouse("mybatis");
+		warehouse = (GeneralWarehouse) getServletContext().getAttribute("warehouse");
 		
 		// 3. view
 		// (1) 관련 변수 선언
@@ -144,14 +144,14 @@ public class UpdateServlet extends HttpServlet {
 			message = String.format("제품 정보 [%s] 수정에 성공하였습니다.", product.getProdCode());
 			
 			// 3.(3) 2차 뷰 선택
-			next = "detail?prodCode=" + prodCode;
+			next = "main/detail?prodCode=" + prodCode;
 			
 		} catch (NotFoundException e) {
 			// (5) 수정 실패 메시지 발생
 			message = e.getMessage();
 			
 			// 3.(3) 수정 실패 시 2차 뷰
-			next = "list";
+			next = "main/list";
 			e.printStackTrace();
 		}
 		
@@ -160,7 +160,7 @@ public class UpdateServlet extends HttpServlet {
 
 		// 3. view 선택
 		// (2) 수정에 실패 / 성공 모두 messageJsp로 전송
-		view = "messageJsp";
+		view = "/messageJsp";
 		
 		// (4) 2차 뷰 request 에 속성 추가
 		request.setAttribute("next", next);

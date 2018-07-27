@@ -15,7 +15,7 @@ table, tr, th, td {
 
 <h3>제품 신규 등록</h3>
 <hr />
-<form action="insert" method="post">
+<form action="${contextPath}/main/insert" method="post">
 
 <table>
 	<tr>

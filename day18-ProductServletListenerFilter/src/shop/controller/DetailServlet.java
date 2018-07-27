@@ -22,17 +22,11 @@ import shop.vo.Product;
  * @author PC38219
  *
  */
-@WebServlet("/detail")
+@WebServlet({"/detail", "/main/detail"})
 public class DetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 한글 처리
-		// (1) 요청 한글 처리
-		request.setCharacterEncoding("utf-8");
-		// (2) 응답 한글 처리
-		response.setContentType("text/html;charset=utf-8");
-		
 		// 2. 모델 생성
 		// (1) 화면에서 넘어온 파라미터 추출
 		//     조회할 제품 코드
@@ -44,7 +38,7 @@ public class DetailServlet extends HttpServlet {
 		
 		// (3) DB 조회에 사용할 객체 준비
 		GeneralWarehouse warehouse;
-		warehouse = getWarehouse("mybatis");
+		warehouse = (GeneralWarehouse) getServletContext().getAttribute("warehouse");
 		
 		// 3. View 객체 선언
 		String view = null;
@@ -59,7 +53,7 @@ public class DetailServlet extends HttpServlet {
 			request.setAttribute("product", found);
 			
 			// 3.(1) 1차 뷰 선택
-			view = "detailJsp";
+			view = "/detailJsp";
 			
 		} catch (NotFoundException e) {
 			// 조회하려는 제품이 없을 때 메시지 생성
@@ -69,9 +63,9 @@ public class DetailServlet extends HttpServlet {
 			request.setAttribute("message", message);
 
 			// 3.(1) 1차 뷰 선택			
-			view = "messageJsp";
+			view = "/messageJsp";
 			// 3.(2) 2차 뷰 선택 & 속성으로 추가
-			next = "list";
+			next = "main/list";
 			request.setAttribute("next", next);
 			
 			e.printStackTrace();

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Session 를 사용한 로그인</title>
+<title>로그인</title>
 <style type="text/css">
 table, tr, th, td {
 	border : 1px solid black;
@@ -13,8 +13,8 @@ table, tr, th, td {
 </head>
 <body>
 
-<h3>로그인 하세요(Session)</h3>
-<form action="login" method="post">
+<h3>로그인 하세요</h3>
+<form action="${contextPath}/login" method="post">
 	<table>
 		<tr>
 			<th>유저 아이디</th>

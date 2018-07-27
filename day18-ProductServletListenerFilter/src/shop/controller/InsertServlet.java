@@ -26,7 +26,7 @@ import shop.vo.Product;
  * @author PC38219
  *
  */
-@WebServlet("/insert")
+@WebServlet({"/insert", "/main/insert"})
 public class InsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,7 +37,7 @@ public class InsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 뷰를 결정
-		String view = "insertJsp";
+		String view = "/insertJsp";
 		
 		// RequestDispatcher 로 이동
 		RequestDispatcher reqd;
@@ -55,11 +55,6 @@ public class InsertServlet extends HttpServlet {
 	 * insert 쿼리를 실행
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 한글 처리
-		// (1) 요청 한글 처리
-		request.setCharacterEncoding("utf-8");
-		// (2) 응답 한글 처리
-		response.setContentType("text/html;charset=utf-8");
 		
 		// 2. 모델 생성
 		// (1) insert.jsp 에서 넘어온 파라미터 추출
@@ -73,7 +68,7 @@ public class InsertServlet extends HttpServlet {
 		
 		// (3) DB입력에 필요한 객체 선언
 		GeneralWarehouse warehouse;
-		warehouse = getWarehouse("mybatis");
+		warehouse = (GeneralWarehouse) getServletContext().getAttribute("warehouse");
 		
 		// DB 입력 성공/실패 시 발생하는 메시지 변수
 		String message = null;
@@ -87,13 +82,13 @@ public class InsertServlet extends HttpServlet {
 			message = String.format("제품 정보 [%s] 추가에 성공하였습니다.", product.getProdCode());
 			
 			// 추가 성공 후 전체 목록으로 자동 이동
-			next = "list";
+			next = "main/list";
 			
 		} catch (DuplicateException e) {
 			message = String.format(e.getMessage());
 			
 			// 실패 시 다시 입력하는 화면으로 자동이동
-			next = "insert";
+			next = "main/insert";
 
 			e.printStackTrace();
 			
@@ -105,7 +100,7 @@ public class InsertServlet extends HttpServlet {
 		
 		// 3. View 결정
 		// (1) 추가 성공 / 실패 메시지를 출력할 1차 뷰
-		String view = "messageJsp";
+		String view = "/messageJsp";
 		
 		// (2) 2차 뷰 선택된 내용을 request 에 속성으로 추가
 		request.setAttribute("next", next);

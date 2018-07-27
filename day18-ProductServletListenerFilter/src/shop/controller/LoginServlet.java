@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 뷰 결정
-		String view = "loginJsp";
+		String view = "/loginJsp";
 		
 		// 페이지 이동
 		RequestDispatcher reqd = request.getRequestDispatcher(view);
@@ -56,18 +56,20 @@ public class LoginServlet extends HttpServlet {
 			message = userid + "님이 로그인 하였습니다.";
 			
 			// 뷰 결정
-			view = "messageJsp";
+			view = "/messageJsp";
 			
 			// 2차 뷰 결정
-			next = "menu";
+			next = "main/menu";
+			
 		} else {
 			message = "로그인 실패하였습니다.";
-			view = "messageJsp";
+			view = "/messageJsp";
 			next = "login";
 			
 		}
 		
 		request.setAttribute("message", message);
+		request.setAttribute("next", next);
 		
 		RequestDispatcher reqd = request.getRequestDispatcher(view);
 		reqd.forward(request, response);

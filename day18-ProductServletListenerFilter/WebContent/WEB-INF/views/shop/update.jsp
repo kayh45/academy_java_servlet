@@ -42,8 +42,8 @@ table, tr, th, td {
 	</tr>
 	<tr>
 		<td colspan="2" style="text-align:center;">
-			<a href="list">목록보기</a>
-			<a href="detail?prodCode=${product.prodCode}">수정 취소</a>
+			<a href="${contextPath}/main/list">목록보기</a>
+			<a href="${contextPath}/main/detail?prodCode=${product.prodCode}">수정 취소</a>
 			<input type="submit" value="저장" />
 			<input type="reset" value="초기화" />
 		</td>

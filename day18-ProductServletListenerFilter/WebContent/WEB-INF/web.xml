@@ -15,7 +15,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>menuJsp</servlet-name>
-    <url-pattern>/menu</url-pattern>
+    <url-pattern>/main/menu</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>listJsp</servlet-name>
