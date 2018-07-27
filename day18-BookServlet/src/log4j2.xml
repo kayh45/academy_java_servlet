@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+  	<!-- 콘솔 출력 -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  
+  	<!-- 파일 출력 -->
+  	<File name="myFile" fileName="book.log">
+  		<PatternLayout>
+  			<Pattern>%d %p %c{.1} [%t] %m%n</Pattern>
+  		</PatternLayout>
+  	</File>
+  </Appenders>
+  
+  <Loggers>
+  	<!-- 로거의 name 속성에는 매퍼 xml의 namespace 를 써준다. -->
+  	<!-- 로거의 level 속성에는 TRACE 로 작성 : 
+  		 TRACE로 작성하면 DQL 실행 시 결과셋을 추적해준다.
+  		 DEBUG로 작석하면 SQL 구문을 추적해준다. -->
+  	<Logger name="book.mapper.BookMapper" level="TRACE" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="myFile"/>
+  	</Logger>
+  	
+    <Root level="DEBUG">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="myFile"/>
+    </Root>
+  </Loggers>
+</Configuration>

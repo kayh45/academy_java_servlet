@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="book.mapper.BookMapper">
+	<insert id="insert" parameterType="Book">
+		INSERT INTO book b 
+			( b.bookid
+			, b.title
+			, b.author
+			, b.price
+			, b.isbn
+			, b.publish
+			)
+		VALUES 
+			( #{bookId}
+			, #{title}
+			, #{author}
+			, #{price}
+			, #{isbn}
+			, #{publish}
+			)
+	</insert>
+	
+	<update id="update" parameterType="string">
+		UPDATE book b
+		<set>
+  		       b.moddate = sysdate
+			<if test="title != null">
+		     , b.title   = #{title}
+			</if>     
+			<if test="author != null">
+		     , b.author  = #{author}
+			</if>
+			<if test="price > 0">
+		     , b.price   = #{price}
+			</if>     
+			<if test="isbn != null">
+		     , b.isbn    = #{isbn}
+			</if>
+			<if test="publish != null">
+		     , b.publish = #{publish}
+			</if>
+		</set>
+		<trim prefix="SET" prefixOverrides="," />
+		 WHERE b.bookid = #{bookId}
+	</update>
+	
+	<delete id="delete">
+		DELETE book b
+		<if test="bookId != null">
+		 WHERE b.bookid = #{bookId}
+		</if>
+	</delete>
+	
+	<select id="selectOne" parameterType="Book" resultType="Book">
+		SELECT b.bookid
+			 , b.title
+			 , b.author
+			 , b.price
+			 , b.isbn
+			 , b.publish
+		  FROM book b
+		 WHERE b.bookid = #{bookId}
+	</select>
+	
+	<select id="selectAll" resultType="Book">
+		SELECT b.bookid
+			 , b.title
+			 , b.author
+			 , b.price
+			 , b.isbn
+			 , b.publish
+		  FROM book b
+	</select>
+	
+	<select id="selectByPrice" parameterType="Map" resultType="Book">
+		SELECT b.bookid
+		     , b.title
+		     , b.author
+		     , b.price
+		     , b.isbn
+		     , b.publish
+		  FROM book b
+		 WHERE b.price BETWEEN #{high} AND #{low}
+	</select>
+	
+	<select id="selectByKeyword" parameterType="String" resultType="Book">
+		SELECT b.bookid
+		     , b.title
+		     , b.author
+		     , b.price
+		     , b.isbn
+		     , b.publish
+		  FROM book b
+		 WHERE b.title LIKE '%' || #{value} || '%'
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(b.bookid) 
+		  FROM book b
+	</select>
+	
+	<select id="isExists" parameterType="Book" resultType="String">
+		SELECT b.bookid
+  		  FROM book b
+		 WHERE b.bookid = #{bookId}
+	</select>
+	
+	
+</mapper>
