@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="shop.mapper.ProductMapper">
+	<insert id="insert">
+		INSERT INTO product
+			( prodcode
+			, prodname
+			, price
+			, quantity
+			)
+		VALUES 
+			( #{prodCode}
+			, #{prodName}
+			, #{price}
+			, #{quantity}
+			)
+	</insert>
+	
+	<select id="selectOne" parameterType="Product" resultType="Product">
+		SELECT p.prodcode
+		     , p.prodname
+		     , p.price 
+		     , p.quantity
+		  FROM product p
+		 WHERE p.prodcode = #{prodCode}
+	</select>
+	
+	<update id="update" parameterType="Product">
+		UPDATE product p          
+		<set>
+		     p.moddate  = sysdate
+			<if test="prodName != null">
+		     , p.prodname = #{prodName}     
+			</if>
+			<if test="price > 0">
+		     , p.price    = #{price}
+			</if>
+			<if test="quantity > -1">
+		     , p.quantity = #{quantity} 
+			</if>
+		</set>
+		<trim prefix="SET" prefixOverrides="," />
+		 WHERE p.prodcode = #{prodCode} 
+	</update>
+	
+	<delete id="delete" parameterType="Product">
+		DELETE product p
+		<if test="prodCode != null">
+		 WHERE p.prodcode = #{prodCode}	
+		</if>    
+	</delete>
+	
+	<select id="selectAll" resultType="Product">
+		SELECT p.prodcode
+		     , p.prodname
+		     , p.price 
+		     , p.quantity
+		  FROM product p
+		 ORDER BY p.prodcode
+	</select>
+	
+	<select id="isExists" parameterType="Product" resultType="string">
+		SELECT p.prodcode   
+		  FROM product p
+		 WHERE p.prodcode = #{prodCode}
+	</select>
+	
+</mapper>

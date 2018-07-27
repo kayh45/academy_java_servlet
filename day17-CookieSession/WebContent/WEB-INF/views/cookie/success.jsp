@@ -5,14 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 성공</title>
+<title>
+<% 
+	Cookie[] cookies = request.getCookies();
+
+	if (cookies.length > 1) {
+%>
+로그인 성공
+<%
+	} else {
+%>
+로그인 실패
+<%
+	}
+%>
+</title>
 </head>
 <body>
 
 <%
 	// 쿠키는 여러개가 추가되었을 수 있으므로
 	// 항상 배열로 얻어낸다.
-	Cookie[] cookies = request.getCookies();
+
 
 	// 쿠키는 key=value 쌍으로 저장되기 때문에
 	// map 타입으로 관리하기 편리함

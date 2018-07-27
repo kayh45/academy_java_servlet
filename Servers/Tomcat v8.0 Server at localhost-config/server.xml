@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="day16-ProductServlet" path="/shop" reloadable="true" source="org.eclipse.jst.jee.server:day16-ProductServlet"/><Context docBase="day16-JSTL" path="/day16-JSTL" reloadable="true" source="org.eclipse.jst.jee.server:day16-JSTL"/><Context docBase="day17-CookieSession" path="/track" reloadable="true" source="org.eclipse.jst.jee.server:day17-CookieSession"/></Host>
+      <Context docBase="day16-ProductServlet" path="/shop" reloadable="true" source="org.eclipse.jst.jee.server:day16-ProductServlet"/><Context docBase="day16-JSTL" path="/day16-JSTL" reloadable="true" source="org.eclipse.jst.jee.server:day16-JSTL"/><Context docBase="day17-CookieSession" path="/track" reloadable="true" source="org.eclipse.jst.jee.server:day17-CookieSession"/><Context docBase="day18-ContextListener" path="/day18-ContextListener" reloadable="true" source="org.eclipse.jst.jee.server:day18-ContextListener"/><Context docBase="day18-Filter" path="/filter" reloadable="true" source="org.eclipse.jst.jee.server:day18-Filter"/></Host>
     </Engine>
   </Service>
 </Server>
